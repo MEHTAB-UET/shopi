@@ -4,6 +4,13 @@
     display: none !important;
   }
 }
+
+@media (max-width: 429.99px) {
+  .badge {
+    display: none;
+  }
+}
+
 @media (max-width: 650px) {
   .navbar-center-bar {
     min-width: 0 !important;
