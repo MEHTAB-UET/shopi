@@ -1,0 +1,19 @@
+export function loadProductsMainContent() {
+  fetch(
+    "/Shopii/components/Products/ProductsMainContent/ProductsMainContent.html"
+  )
+    .then((res) => res.text())
+    .then((html) => {
+      document.getElementById("main-content-container").innerHTML = html;
+      // Load CSS
+      let cssId = "products-main-content-css";
+      let oldCss = document.getElementById(cssId);
+      if (oldCss) oldCss.remove();
+      let link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href =
+        "/Shopii/components/Products/ProductsMainContent/ProductsMainContent.css";
+      link.id = cssId;
+      document.head.appendChild(link);
+    });
+}
