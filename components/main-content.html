@@ -1,0 +1,220 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3>Add product</h3>
+    </div>
+    <div class="row">
+      <!-- Left: Product Form -->
+      <div class="col-lg-8">
+        <div class="form-section mb-4">
+          <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Short sleeve t-shirt"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <div
+              class="bg-white rounded-3 border mb-0"
+              style="border-radius: 8px; border: 1px solid #ddd"
+            >
+              <div
+                class="desc-toolbar d-flex align-items-center px-2 py-1 border-bottom"
+                style="background: #fafbfc"
+              >
+                <div class="dropdown me-2">
+                  <button
+                    class="btn btn-sm btn-light dropdown-toggle border"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    style="font-size: 0.95em"
+                  >
+                    <i class="bi bi-chevron-down"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Paragraph</a></li>
+                    <li><a class="dropdown-item" href="#">Heading</a></li>
+                  </ul>
+                </div>
+                <select
+                  class="form-select form-select-sm w-auto me-2"
+                  style="font-size: 0.95em; min-width: 110px"
+                >
+                  <option>Paragraph</option>
+                  <option>Heading</option>
+                </select>
+                <button class="btn btn-sm btn-light border mx-1">
+                  <b>B</b>
+                </button>
+                <button class="btn btn-sm btn-light border mx-1">
+                  <i>I</i>
+                </button>
+                <button class="btn btn-sm btn-light border mx-1">
+                  <u>U</u>
+                </button>
+                <button class="btn btn-sm btn-light border mx-1">
+                  <s>A</s>
+                </button>
+                <button class="btn btn-sm btn-light border mx-1">
+                  <i class="bi bi-list-ul"></i>
+                </button>
+                <button class="btn btn-sm btn-light border mx-1">
+                  <i class="bi bi-list-ol"></i>
+                </button>
+                <button class="btn btn-sm btn-light border mx-1">
+                  <i class="bi bi-link-45deg"></i>
+                </button>
+                <button class="btn btn-sm btn-light border mx-1">
+                  <i class="bi bi-emoji-smile"></i>
+                </button>
+                <button class="btn btn-sm btn-light border mx-1">
+                  <i class="bi bi-three-dots"></i>
+                </button>
+              </div>
+              <textarea
+                class="form-control border-0"
+                rows="6"
+                style="
+                  box-shadow: none;
+                  resize: vertical;
+                  border-radius: 0 0 8px 8px;
+                "
+                placeholder=""
+              ></textarea>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Media</label>
+            <div
+              class="p-4 mb-2 border border-2 border-dashed rounded-3 text-center"
+              style="border-style: dashed !important; background: #fafbfc"
+            >
+              <div
+                class="d-flex justify-content-center align-items-center gap-2 mb-2"
+              >
+                <button
+                  type="button"
+                  class="btn btn-light border fw-semibold px-4"
+                >
+                  Upload new
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-light border-0 fw-semibold px-4"
+                >
+                  Select existing
+                </button>
+              </div>
+              <div class="text-muted small">
+                Accepts images, videos, or 3D models
+              </div>
+              <input
+                type="file"
+                id="mediaInput"
+                multiple
+                class="form-control d-none"
+              />
+              <div
+                class="media-preview d-flex flex-wrap justify-content-center mt-2"
+                id="mediaPreview"
+              ></div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Category</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="e.g. T-shirts"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- Right: Product Details -->
+      <div class="col-lg-4">
+        <!-- Status Card -->
+        <div
+          class="mb-4 p-3 bg-white rounded-3 shadow-sm border"
+          style="border-radius: 12px"
+        >
+          <label class="form-label fw-semibold mb-2">Status</label>
+          <select class="form-select">
+            <option>Active</option>
+            <option>Draft</option>
+            <option>Archived</option>
+          </select>
+        </div>
+        <!-- Publishing Card -->
+        <div
+          class="mb-4 p-3 bg-white rounded-3 shadow-sm border"
+          style="border-radius: 12px"
+        >
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="fw-semibold">Publishing</span>
+            <a href="#" class="text-primary fw-semibold small">Manage</a>
+          </div>
+          <div class="d-flex gap-2">
+            <button
+              type="button"
+              class="btn btn-light border d-flex align-items-center gap-2 px-3 py-1"
+              style="border-radius: 20px; font-weight: 500"
+            >
+              <i class="bi bi-shop"></i> Online Store
+            </button>
+            <button
+              type="button"
+              class="btn btn-light border d-flex align-items-center gap-2 px-3 py-1"
+              style="border-radius: 20px; font-weight: 500"
+            >
+              <i class="bi bi-tablet"></i> Point of Sale
+            </button>
+          </div>
+        </div>
+        <!-- Product Organization Card -->
+        <div
+          class="mb-4 p-3 bg-white rounded-3 shadow-sm border"
+          style="border-radius: 12px"
+        >
+          <div class="d-flex align-items-center mb-2">
+            <span class="fw-semibold">Product organization</span>
+            <i
+              class="bi bi-info-circle ms-2 text-muted"
+              data-bs-toggle="tooltip"
+              title="Organize your product for easier management."
+            ></i>
+          </div>
+          <div class="mb-3">
+            <label class="form-label mb-1">Type</label>
+            <input type="text" class="form-control" placeholder="" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label mb-1">Vendor</label>
+            <input type="text" class="form-control" placeholder="" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label mb-1">Collections</label>
+            <div class="input-group">
+              <span class="input-group-text bg-white border-end-0"
+                ><i class="bi bi-search"></i
+              ></span>
+              <input
+                type="text"
+                class="form-control border-start-0"
+                placeholder=""
+                style="border-top-left-radius: 0; border-bottom-left-radius: 0"
+              />
+            </div>
+          </div>
+          <div class="mb-1">
+            <label class="form-label mb-1">Tags</label>
+            <input type="text" class="form-control" placeholder="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

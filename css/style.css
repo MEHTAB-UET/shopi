@@ -1,0 +1,31 @@
+body {
+  background: #f6f6f7;
+}
+.main-content {
+  padding-top: 80px;
+  margin-left: 240px;
+  padding: 80px 20px 20px 20px;
+  transition: margin-left 0.3s;
+}
+@media (max-width: 991.98px) {
+  .main-content {
+    margin-left: 0;
+    padding-top: 80px;
+  }
+}
+.form-section {
+  background: #fff;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+.media-preview img {
+  max-width: 100px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+@media (max-width: 650px) {
+  .desc-toolbar {
+    display: none !important;
+  }
+}
