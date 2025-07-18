@@ -1,0 +1,77 @@
+.collection-popup-inner {
+  background: #fff;
+  border-radius: 14px;
+  padding: 28px 28px 22px 28px;
+  min-width: 380px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  position: relative;
+  font-family: inherit;
+}
+.collection-popup-inner h2 {
+  font-size: 1.18rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+  margin-top: 0;
+}
+#addCollectionForm .form-label {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 6px;
+}
+.collection-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+#collectionTitle.form-control {
+  border-radius: 10px;
+  border: 2px solid #d1d5db;
+  font-size: 1.08rem;
+  padding: 8px 44px 8px 10px;
+  outline: none;
+  box-shadow: none;
+  transition: border-color 0.2s;
+}
+#collectionTitle.form-control:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px #2563eb22;
+}
+.collection-char-count {
+  position: absolute;
+  right: 12px;
+  color: #888;
+  font-size: 0.98em;
+  pointer-events: none;
+}
+.collection-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.3em;
+  color: #888;
+  cursor: pointer;
+}
+#addCollectionForm .btn {
+  border-radius: 8px;
+  font-weight: 500;
+  min-width: 90px;
+  font-size: 1.01em;
+}
+#addCollectionForm .btn-dark[disabled],
+#addCollectionForm .btn-dark:disabled {
+  background: #e5e7eb !important;
+  color: #888 !important;
+  border: none;
+  cursor: not-allowed;
+  opacity: 1;
+}
+#addCollectionForm .btn-light {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  color: #333;
+}
+.d-flex.justify-content-end.gap-2.mt-3 {
+  margin-top: 18px !important;
+}

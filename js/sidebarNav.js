@@ -65,6 +65,31 @@ document.addEventListener("click", function (e) {
         "loadAnalyticsMainContent"
       );
     }
+    if (text === "Collection") {
+      fetch("/Shopii/components/Products/Collection/Collection.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("main-content-container").innerHTML = html;
+          // Load CSS
+          let cssId = "collection-main-content-css";
+          let oldCss = document.getElementById(cssId);
+          if (oldCss) oldCss.remove();
+          let link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = "/Shopii/components/Products/Collection/Collection.css";
+          link.id = cssId;
+          document.head.appendChild(link);
+          // Load JS for popup
+          let jsId = "collection-popup-js";
+          let oldJs = document.getElementById(jsId);
+          if (oldJs) oldJs.remove();
+          let script = document.createElement("script");
+          script.src = "/Shopii/components/Products/Collection/pop.js";
+          script.id = jsId;
+          document.body.appendChild(script);
+        });
+      return;
+    }
   }
   // Mobile offcanvas sidebar
   if (e.target.closest("#mobileSidebar .sidebar-item")) {
@@ -159,6 +184,31 @@ document.addEventListener("click", function (e) {
         document.getElementById("mobileSidebar")
       );
       offcanvas.hide();
+    }
+    if (text === "Collection") {
+      fetch("/Shopii/components/Products/Collection/Collection.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("main-content-container").innerHTML = html;
+          // Load CSS
+          let cssId = "collection-main-content-css";
+          let oldCss = document.getElementById(cssId);
+          if (oldCss) oldCss.remove();
+          let link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = "/Shopii/components/Products/Collection/Collection.css";
+          link.id = cssId;
+          document.head.appendChild(link);
+          // Load JS for popup
+          let jsId = "collection-popup-js";
+          let oldJs = document.getElementById(jsId);
+          if (oldJs) oldJs.remove();
+          let script = document.createElement("script");
+          script.src = "/Shopii/components/Products/Collection/pop.js";
+          script.id = jsId;
+          document.body.appendChild(script);
+        });
+      return;
     }
   }
 });

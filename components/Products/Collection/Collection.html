@@ -1,0 +1,46 @@
+<div class="collection-main-content">
+  <div class="collection-header">
+    <h1><i class="bi bi-tag"></i> Collections</h1>
+    <button id="addCollectionBtn" class="btn btn-dark">Add collection</button>
+  </div>
+  <div class="collection-table-card">
+    <div class="collection-table-toolbar">
+      <button class="btn btn-light btn-sm active">All</button>
+      <button class="btn btn-light btn-sm">+</button>
+      <div class="collection-table-actions">
+        <button class="btn btn-light btn-sm">
+          <i class="bi bi-funnel"></i>
+        </button>
+        <button class="btn btn-light btn-sm">
+          <i class="bi bi-arrow-down-up"></i>
+        </button>
+      </div>
+    </div>
+    <table class="collection-table">
+      <thead>
+        <tr>
+          <th style="width: 40px"><input type="checkbox" /></th>
+          <th>Title</th>
+          <th>Products</th>
+          <th>Product conditions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td class="collection-title-cell">
+            <span class="collection-thumb"><i class="bi bi-image"></i></span>
+            Home page
+          </td>
+          <td>0</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="collection-learn">
+      Learn more about <a href="#">collections</a>
+    </div>
+  </div>
+</div>
+<!-- Popup for Add Collection -->
+<div id="collectionPopup" class="collection-popup" style="display: none"></div>

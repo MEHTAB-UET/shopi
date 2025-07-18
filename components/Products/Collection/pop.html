@@ -1,0 +1,38 @@
+<div class="collection-popup-inner">
+  <button
+    class="collection-popup-close"
+    id="closeCollectionPopup"
+    title="Close"
+  >
+    &times;
+  </button>
+  <h2>Create new view</h2>
+  <form id="addCollectionForm">
+    <div class="mb-3">
+      <label for="collectionTitle" class="form-label">Name</label>
+      <div class="collection-input-wrapper">
+        <input
+          type="text"
+          class="form-control"
+          id="collectionTitle"
+          maxlength="40"
+          autocomplete="off"
+        />
+        <span class="collection-char-count" id="collectionCharCount">0/40</span>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end gap-2 mt-3">
+      <button type="button" class="btn btn-light" id="cancelCollectionBtn">
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="btn btn-dark"
+        id="createCollectionBtn"
+        disabled
+      >
+        Create view
+      </button>
+    </div>
+  </form>
+</div>
