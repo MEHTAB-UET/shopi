@@ -1,3 +1,359 @@
+<!-- Main content area for the Product Quote Builder page -->
 <div class="content-main-content">
-  <h1>Content Main Content</h1>
+  <!-- Header with back arrow and page title -->
+  <div class="content-header">
+    <span class="content-back">&#8592;</span>
+    <h1>Product Quote Builder</h1>
+  </div>
+  <!-- Accordion container for all sections -->
+  <div class="content-accordion">
+    <!-- Vessel Information Section -->
+    <div class="content-accordion-item" data-accordion>
+      <div class="content-accordion-title">
+        Vessel Information <span class="content-caret">&#9662;</span>
+      </div>
+      <div class="content-accordion-body">
+        <!-- Form for vessel information -->
+        <form class="vessel-form">
+          <!-- Newbuild or Retrofit question -->
+          <div class="vessel-form-group vessel-form-group--first">
+            <label class="vessel-label"
+              >Is This A Newbuild Or A Retrofit?</label
+            >
+            <div class="vessel-checkbox-group">
+              <label class="vessel-checkbox-label">
+                <input type="checkbox" checked /> Yes
+              </label>
+              <label class="vessel-checkbox-label">
+                <input type="checkbox" /> No
+              </label>
+            </div>
+          </div>
+          <!-- Vessel type selection -->
+          <div class="vessel-form-group">
+            <label class="vessel-label">What Type Of Vessel Is This For?</label>
+            <select class="vessel-select">
+              <option>Vessel A</option>
+              <option>Vessel B</option>
+              <option>Vessel C</option>
+            </select>
+          </div>
+          <!-- Classification society selection -->
+          <div class="vessel-form-group">
+            <label class="vessel-label"
+              >What Is The Classification Society?</label
+            >
+            <select class="vessel-select">
+              <option>Classification A</option>
+              <option>Classification B</option>
+              <option>Classification C</option>
+            </select>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- I/O Information Section -->
+    <div class="content-accordion-item" data-accordion>
+      <div class="content-accordion-title">
+        I/O Information <span class="content-caret">&#9662;</span>
+      </div>
+      <div class="content-accordion-body">
+        <!-- Form for digital and analog I/O -->
+        <form class="io-form">
+          <!-- Digital I/O table -->
+          <div class="io-section">
+            <label class="io-label"
+              >What Is The Number Of Digital I/O Required?</label
+            >
+            <div class="io-table-container" id="digitalIoTableContainer"></div>
+            <button type="button" class="io-add-btn" data-io-type="digital">
+              Add Line Item
+            </button>
+          </div>
+          <!-- Analog I/O table -->
+          <div class="io-section">
+            <label class="io-label"
+              >What Is The Number Of Analogue I/O Required?</label
+            >
+            <div class="io-table-container" id="analogIoTableContainer"></div>
+            <button type="button" class="io-add-btn" data-io-type="analog">
+              Add Line Item
+            </button>
+          </div>
+          <!-- Termination Boards Yes/No -->
+          <div class="io-section">
+            <label class="io-label"
+              >Would You Like To Add Termination Boards?</label
+            >
+            <div class="io-checkbox-group">
+              <label class="io-checkbox-label">
+                <input type="checkbox" name="termination" value="yes" /> Yes
+              </label>
+              <label class="io-checkbox-label">
+                <input type="checkbox" name="termination" value="no" checked />
+                No
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Data Interfaces Section -->
+    <div class="content-accordion-item" data-accordion>
+      <div class="content-accordion-title">
+        Data Interfaces <span class="content-caret">&#9662;</span>
+      </div>
+      <div class="content-accordion-body">
+        <!-- Form for third party system interfaces -->
+        <form class="data-interface-form">
+          <label class="data-interface-label"
+            >What Is The Total Number Of Interfaces To Third Party
+            Systems?</label
+          >
+          <div
+            class="data-interface-table-container"
+            id="dataInterfaceTableContainer"
+          ></div>
+          <button type="button" class="data-interface-add-btn">
+            Add Line Item
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- Operator Stations Section -->
+    <div class="content-accordion-item" data-accordion>
+      <div class="content-accordion-title">
+        Operator Stations <span class="content-caret">&#9662;</span>
+      </div>
+      <div class="content-accordion-body">
+        <!-- Form for operator station options -->
+        <form class="operator-station-form">
+          <!-- Add Operator Station Yes/No -->
+          <div class="operator-station-section">
+            <label class="operator-station-label"
+              >Do you want to add Operation Station?</label
+            >
+            <div class="operator-station-radio-group">
+              <label class="operator-station-radio-label">
+                <input type="radio" name="addOperatorStation" value="yes" /> Yes
+              </label>
+              <label class="operator-station-radio-label">
+                <input
+                  type="radio"
+                  name="addOperatorStation"
+                  value="no"
+                  checked
+                />
+                No
+              </label>
+            </div>
+          </div>
+          <!-- Operator Station options (shown if Yes) -->
+          <div
+            class="operator-station-options"
+            id="operatorStationOptions"
+            style="display: none"
+          >
+            <!-- Monitor table -->
+            <div class="operator-station-section">
+              <label class="operator-station-label"
+                >What Is The Size Of The Monitors (Inches)?</label
+              >
+              <div
+                class="operator-station-table-container"
+                id="monitorTableContainer"
+              ></div>
+              <button
+                type="button"
+                class="operator-station-add-btn"
+                data-ostype="monitor"
+              >
+                Add Line Item
+              </button>
+            </div>
+            <!-- Mimics input -->
+            <div class="operator-station-section">
+              <label class="operator-station-label"
+                >What Is The Total Number Of Mimics Required?</label
+              >
+              <input
+                type="number"
+                class="operator-station-mimic-input"
+                min="0"
+                value="0"
+              />
+            </div>
+            <!-- Printer table -->
+            <div class="operator-station-section">
+              <label class="operator-station-label"
+                >What Is The Total Number Of Printer Required?</label
+              >
+              <div
+                class="operator-station-table-container"
+                id="printerTableContainer"
+              ></div>
+              <button
+                type="button"
+                class="operator-station-add-btn"
+                data-ostype="printer"
+              >
+                Add Line Item
+              </button>
+            </div>
+            <!-- UPSes Yes/No -->
+            <div class="operator-station-section">
+              <label class="operator-station-label"
+                >Would You Like To Add Operator Station UPSes?</label
+              >
+              <div class="operator-station-checkbox-group">
+                <label class="operator-station-checkbox-label">
+                  <input type="checkbox" name="ups" value="yes" /> Yes
+                </label>
+                <label class="operator-station-checkbox-label">
+                  <input type="checkbox" name="ups" value="no" checked /> No
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Extension Alarm Systems Section -->
+    <div class="content-accordion-item" data-accordion>
+      <div class="content-accordion-title">
+        Extension Alarm Systems <span class="content-caret">&#9662;</span>
+      </div>
+      <div class="content-accordion-body">
+        <!-- Form for extension alarm system options -->
+        <form class="extension-alarm-form">
+          <!-- Add Extended Alarm System Yes/No -->
+          <div class="extension-alarm-section">
+            <label class="extension-alarm-label"
+              >Would You Like To Add A Extended Alarm System?</label
+            >
+            <div class="extension-alarm-checkbox-group">
+              <label class="extension-alarm-checkbox-label">
+                <input
+                  type="checkbox"
+                  name="addExtendedAlarm"
+                  value="yes"
+                  checked
+                />
+                Yes
+              </label>
+              <label class="extension-alarm-checkbox-label">
+                <input type="checkbox" name="addExtendedAlarm" value="no" /> No
+              </label>
+            </div>
+          </div>
+          <!-- Alarm system table (shown if Yes) -->
+          <div
+            class="extension-alarm-table-section"
+            id="extensionAlarmTableSection"
+          >
+            <label class="extension-alarm-label"
+              >How Many Locations Will Require The Alarm System?</label
+            >
+            <div
+              class="extension-alarm-table-container"
+              id="extensionAlarmTableContainer"
+            ></div>
+            <button type="button" class="extension-alarm-add-btn">
+              Add Line Item
+            </button>
+          </div>
+          <!-- Dead Man Alarm System Yes/No -->
+          <div class="extension-alarm-section">
+            <label class="extension-alarm-label"
+              >Would You Like To Add A Dead Man Alarm System?</label
+            >
+            <div class="extension-alarm-checkbox-group">
+              <label class="extension-alarm-checkbox-label">
+                <input type="checkbox" name="deadManAlarm" value="yes" /> Yes
+              </label>
+              <label class="extension-alarm-checkbox-label">
+                <input type="checkbox" name="deadManAlarm" value="no" checked />
+                No
+              </label>
+            </div>
+          </div>
+          <!-- BNWAS Yes/No -->
+          <div class="extension-alarm-section">
+            <label class="extension-alarm-label"
+              >Would You Like To Add BNWAS?</label
+            >
+            <div class="extension-alarm-checkbox-group">
+              <label class="extension-alarm-checkbox-label">
+                <input type="checkbox" name="bnwas" value="yes" /> Yes
+              </label>
+              <label class="extension-alarm-checkbox-label">
+                <input type="checkbox" name="bnwas" value="no" checked /> No
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Power Management System Section -->
+    <div class="content-accordion-item" data-accordion>
+      <div class="content-accordion-title">
+        Power Management System <span class="content-caret">&#9662;</span>
+      </div>
+      <div class="content-accordion-body">
+        <!-- Form for power management system -->
+        <form class="power-management-form">
+          <div class="power-management-section">
+            <label class="power-management-label"
+              >Would You Like To Add A Power Management System?</label
+            >
+            <div class="power-management-checkbox-group">
+              <label class="power-management-checkbox-label">
+                <input type="checkbox" name="addPowerManagement" value="yes" />
+                Yes
+              </label>
+              <label class="power-management-checkbox-label">
+                <input
+                  type="checkbox"
+                  name="addPowerManagement"
+                  value="no"
+                  checked
+                />
+                No
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Remote Access Section -->
+    <div class="content-accordion-item" data-accordion>
+      <div class="content-accordion-title">
+        Remote Access <span class="content-caret">&#9662;</span>
+      </div>
+      <div class="content-accordion-body">
+        <!-- Form for remote data portal -->
+        <form class="remote-access-form">
+          <div class="remote-access-section">
+            <label class="remote-access-label"
+              >Would You Like To Add A Remote Data Portal?</label
+            >
+            <div class="remote-access-checkbox-group">
+              <label class="remote-access-checkbox-label">
+                <input type="checkbox" name="addRemotePortal" value="yes" /> Yes
+              </label>
+              <label class="remote-access-checkbox-label">
+                <input
+                  type="checkbox"
+                  name="addRemotePortal"
+                  value="no"
+                  checked
+                />
+                No
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
