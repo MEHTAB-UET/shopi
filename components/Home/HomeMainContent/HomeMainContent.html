@@ -1,3 +1,359 @@
-<div class="home-main-content">
-  <h1>Home Main Content</h1>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home - Shopify Clone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../../../css/style.css" />
+    <link rel="stylesheet" href="../../../../css/navbar.css" />
+    <link rel="stylesheet" href="../../../../css/sidebar.css" />
+  </head>
+  <body>
+    <!-- Navbar and Sidebar copied from index.html -->
+    <nav
+      class="navbar navbar-dark bg-black border-bottom fixed-top px-0"
+      style="height: 60px; z-index: 1040"
+    >
+      <div class="container-fluid px-3">
+        <div class="d-flex align-items-center">
+          <button
+            class="btn btn-outline-secondary d-lg-none me-2"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#mobileSidebar"
+            aria-controls="mobileSidebar"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <span class="d-flex align-items-center">
+            <span
+              class="rounded-2 d-flex align-items-center justify-content-center me-2"
+              style="width: 32px; height: 32px; background: #a259ff"
+            >
+              <i
+                class="bi bi-bag-fill text-white"
+                style="font-size: 1.3rem"
+              ></i>
+            </span>
+            <span
+              class="fw-bold text-white me-2"
+              style="font-size: 1.25rem; letter-spacing: -1px"
+              >shopify</span
+            >
+            <span
+              class="badge border border-primary text-primary bg-black"
+              style="font-size: 0.85em"
+              >Summer '25</span
+            >
+          </span>
+        </div>
+        <div class="flex-grow-1 d-flex justify-content-center">
+          <div
+            class="navbar-center-bar d-flex align-items-center bg-dark rounded-pill px-3 py-1 w-100"
+            style="min-width: 420px; max-width: 600px"
+          >
+            <i class="bi bi-exclamation-circle text-secondary me-2"></i>
+            <span class="text-white-50 fw-semibold me-3">Unsaved product</span>
+            <div class="ms-auto d-flex align-items-center gap-2 flex-shrink-0">
+              <button
+                class="btn btn-outline-light btn-sm fw-semibold me-2"
+                style="border-radius: 6px"
+              >
+                Discard
+              </button>
+              <button
+                class="btn btn-secondary btn-sm fw-semibold"
+                style="border-radius: 6px; opacity: 0.5; pointer-events: none"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center ms-3 gap-3">
+          <i
+            class="bi bi-emoji-sunglasses text-white"
+            style="font-size: 1.3rem"
+          ></i>
+          <i class="bi bi-bell text-white" style="font-size: 1.3rem"></i>
+          <span class="d-flex align-items-center">
+            <span
+              class="rounded-pill px-2 py-1 fw-bold text-white"
+              style="background: #a259ff; font-size: 1rem"
+              >San</span
+            >
+            <span class="text-white fw-semibold ms-2 text-username"
+              >SandboxTestAsim</span
+            >
+          </span>
+        </div>
+      </div>
+    </nav>
+    <aside class="sidebar-custom">
+      <!-- Sidebar copied from index.html (use relative hrefs as in index.html) -->
+      <ul class="sidebar-list">
+        <a
+          class="sidebar-item active"
+          href="../HomeMainContent/HomeMainContent.html"
+          ><span class="sidebar-icon"><i class="bi bi-house-door"></i></span
+          ><span>Home</span></a
+        >
+        <a
+          class="sidebar-item"
+          href="../../Orders/OrderMainContent/OrderMainContent.html"
+          ><span class="sidebar-icon"><i class="bi bi-box"></i></span
+          ><span>Orders</span></a
+        >
+        <a
+          class="sidebar-item"
+          data-dropdown="products"
+          href="../../Products/ProductsMainContent/ProductsMainContent.html"
+          ><span class="sidebar-icon"><i class="bi bi-tag"></i></span
+          ><span>Products</span
+          ><span class="dropdown-caret"><i class="bi bi-chevron-down"></i></span
+        ></a>
+        <ul
+          class="sidebar-sublist"
+          data-dropdown-list="products"
+          style="display: none"
+        >
+          <a
+            class="sidebar-item sidebar-subitem"
+            href="../../Products/Collection/Collection.html"
+            ><span class="sidebar-icon"><i class="bi bi-collection"></i></span
+            ><span>Collection</span></a
+          >
+          <a class="sidebar-item sidebar-subitem" href="#"
+            ><span class="sidebar-icon"><i class="bi bi-box-seam"></i></span
+            ><span>Inventory</span></a
+          >
+          <a class="sidebar-item sidebar-subitem" href="#"
+            ><span class="sidebar-icon"><i class="bi bi-receipt"></i></span
+            ><span>Purchase Orders</span></a
+          >
+          <a class="sidebar-item sidebar-subitem" href="#"
+            ><span class="sidebar-icon"
+              ><i class="bi bi-arrow-left-right"></i></span
+            ><span>Transfers</span></a
+          >
+          <a class="sidebar-item sidebar-subitem" href="#"
+            ><span class="sidebar-icon"><i class="bi bi-credit-card"></i></span
+            ><span>Gift Cards</span></a
+          >
+        </ul>
+        <a
+          class="sidebar-item"
+          href="../../Customers/CustomersMainContent/CustomersMainContent.html"
+          ><span class="sidebar-icon"><i class="bi bi-person"></i></span
+          ><span>Customers</span></a
+        >
+        <a
+          class="sidebar-item"
+          href="../../Marketing/MarketingMainContent/MarketingMainContent.html"
+          ><span class="sidebar-icon"><i class="bi bi-broadcast"></i></span
+          ><span>Marketing</span></a
+        >
+        <a
+          class="sidebar-item"
+          href="../../Discounts/DiscountsMainContent/DiscountsMainContent.html"
+          ><span class="sidebar-icon"><i class="bi bi-gear"></i></span
+          ><span>Discounts</span></a
+        >
+        <a
+          class="sidebar-item"
+          href="../../Content/ContentMainContent/ContentMainContent.html"
+          ><span class="sidebar-icon"
+            ><i class="bi bi-file-earmark-text"></i></span
+          ><span>Content</span></a
+        >
+        <a
+          class="sidebar-item"
+          href="../../Markets/MarketsMainContent/MarketsMainContent.html"
+          ><span class="sidebar-icon"><i class="bi bi-globe"></i></span
+          ><span>Markets</span></a
+        >
+        <a
+          class="sidebar-item"
+          href="../../Analytics/AnalyticsMainContent/AnalyticsMainContent.html"
+          ><span class="sidebar-icon"><i class="bi bi-bar-chart"></i></span
+          ><span>Analytics</span></a
+        >
+        <li class="sidebar-section">Sales channels</li>
+        <a class="sidebar-item sidebar-subitem" href="#"
+          ><span class="sidebar-icon"><i class="bi bi-window"></i></span
+          ><span>Online Store</span></a
+        >
+        <li class="sidebar-section">Apps</li>
+        <a class="sidebar-item sidebar-subitem" href="#"
+          ><span class="sidebar-icon"><i class="bi bi-plus-circle"></i></span
+          ><span>Add</span></a
+        >
+      </ul>
+      <a class="sidebar-settings" href="#"
+        ><span class="sidebar-icon"><i class="bi bi-gear"></i></span
+        ><span>Settings</span></a
+      >
+    </aside>
+    <!-- Mobile Offcanvas Sidebar (copy as in index.html) -->
+    <div
+      class="offcanvas offcanvas-start"
+      tabindex="-1"
+      id="mobileSidebar"
+      aria-labelledby="mobileSidebarLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="mobileSidebarLabel">Menu</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body p-0">
+        <ul class="sidebar-list">
+          <a
+            class="sidebar-item active"
+            href="../HomeMainContent/HomeMainContent.html"
+            ><span class="sidebar-icon"><i class="bi bi-house-door"></i></span
+            ><span>Home</span></a
+          >
+          <a
+            class="sidebar-item"
+            href="../../Orders/OrderMainContent/OrderMainContent.html"
+            ><span class="sidebar-icon"><i class="bi bi-box"></i></span
+            ><span>Orders</span></a
+          >
+          <a
+            class="sidebar-item"
+            data-dropdown="products"
+            href="../../Products/ProductsMainContent/ProductsMainContent.html"
+            ><span class="sidebar-icon"><i class="bi bi-tag"></i></span
+            ><span>Products</span
+            ><span class="dropdown-caret"
+              ><i class="bi bi-chevron-down"></i></span
+          ></a>
+          <ul
+            class="sidebar-sublist"
+            data-dropdown-list="products"
+            style="display: none"
+          >
+            <a
+              class="sidebar-item sidebar-subitem"
+              href="../../Products/Collection/Collection.html"
+              ><span class="sidebar-icon"><i class="bi bi-collection"></i></span
+              ><span>Collection</span></a
+            >
+            <a class="sidebar-item sidebar-subitem" href="#"
+              ><span class="sidebar-icon"><i class="bi bi-box-seam"></i></span
+              ><span>Inventory</span></a
+            >
+            <a class="sidebar-item sidebar-subitem" href="#"
+              ><span class="sidebar-icon"><i class="bi bi-receipt"></i></span
+              ><span>Purchase Orders</span></a
+            >
+            <a class="sidebar-item sidebar-subitem" href="#"
+              ><span class="sidebar-icon"
+                ><i class="bi bi-arrow-left-right"></i></span
+              ><span>Transfers</span></a
+            >
+            <a class="sidebar-item sidebar-subitem" href="#"
+              ><span class="sidebar-icon"
+                ><i class="bi bi-credit-card"></i></span
+              ><span>Gift Cards</span></a
+            >
+          </ul>
+          <a
+            class="sidebar-item sidebar-subitem"
+            href="../../Products/Collection/Collection.html"
+            ><span class="sidebar-icon"><i class="bi bi-collection"></i></span
+            ><span>Collection</span></a
+          >
+          <a class="sidebar-item sidebar-subitem" href="#"
+            ><span class="sidebar-icon"><i class="bi bi-box-seam"></i></span
+            ><span>Inventory</span></a
+          >
+          <a class="sidebar-item sidebar-subitem" href="#"
+            ><span class="sidebar-icon"><i class="bi bi-receipt"></i></span
+            ><span>Purchase Orders</span></a
+          >
+          <a class="sidebar-item sidebar-subitem" href="#"
+            ><span class="sidebar-icon"
+              ><i class="bi bi-arrow-left-right"></i></span
+            ><span>Transfers</span></a
+          >
+          <a class="sidebar-item sidebar-subitem" href="#"
+            ><span class="sidebar-icon"><i class="bi bi-credit-card"></i></span
+            ><span>Gift Cards</span></a
+          >
+          <a
+            class="sidebar-item"
+            href="../../Customers/CustomersMainContent/CustomersMainContent.html"
+            ><span class="sidebar-icon"><i class="bi bi-person"></i></span
+            ><span>Customers</span></a
+          >
+          <a
+            class="sidebar-item"
+            href="../../Marketing/MarketingMainContent/MarketingMainContent.html"
+            ><span class="sidebar-icon"><i class="bi bi-broadcast"></i></span
+            ><span>Marketing</span></a
+          >
+          <a
+            class="sidebar-item"
+            href="../../Discounts/DiscountsMainContent/DiscountsMainContent.html"
+            ><span class="sidebar-icon"><i class="bi bi-gear"></i></span
+            ><span>Discounts</span></a
+          >
+          <a
+            class="sidebar-item"
+            href="../../Content/ContentMainContent/ContentMainContent.html"
+            ><span class="sidebar-icon"
+              ><i class="bi bi-file-earmark-text"></i></span
+            ><span>Content</span></a
+          >
+          <a
+            class="sidebar-item"
+            href="../../Markets/MarketsMainContent/MarketsMainContent.html"
+            ><span class="sidebar-icon"><i class="bi bi-globe"></i></span
+            ><span>Markets</span></a
+          >
+          <a
+            class="sidebar-item"
+            href="../../Analytics/AnalyticsMainContent/AnalyticsMainContent.html"
+            ><span class="sidebar-icon"><i class="bi bi-bar-chart"></i></span
+            ><span>Analytics</span></a
+          >
+          <li class="sidebar-section">Sales channels</li>
+          <a class="sidebar-item sidebar-subitem" href="#"
+            ><span class="sidebar-icon"><i class="bi bi-window"></i></span
+            ><span>Online Store</span></a
+          >
+          <li class="sidebar-section">Apps</li>
+          <a class="sidebar-item sidebar-subitem" href="#"
+            ><span class="sidebar-icon"><i class="bi bi-plus-circle"></i></span
+            ><span>Add</span></a
+          >
+        </ul>
+        <a class="sidebar-settings" href="#"
+          ><span class="sidebar-icon"><i class="bi bi-gear"></i></span
+          ><span>Settings</span></a
+        >
+      </div>
+    </div>
+    <div id="main-content-container">
+      <div class="home-main-content">
+        <h1>Home Main Content</h1>
+      </div>
+    </div>
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../../js/script.js"></script>
+    <script type="module" src="../../../../js/sidebarNav.js"></script>
+    <script src="../../../../js/DropDown.js"></script>
+  </body>
+</html>
