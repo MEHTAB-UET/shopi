@@ -1,46 +1,587 @@
-<div class="collection-main-content">
-  <div class="collection-header">
-    <h1><i class="bi bi-tag"></i> Collections</h1>
-    <button id="addCollectionBtn" class="btn btn-dark">Add collection</button>
-  </div>
-  <div class="collection-table-card">
-    <div class="collection-table-toolbar">
-      <button class="btn btn-light btn-sm active">All</button>
-      <button class="btn btn-light btn-sm">+</button>
-      <div class="collection-table-actions">
-        <button class="btn btn-light btn-sm">
-          <i class="bi bi-funnel"></i>
-        </button>
-        <button class="btn btn-light btn-sm">
-          <i class="bi bi-arrow-down-up"></i>
-        </button>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Collections - Shopify Clone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="/Shopii/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="/Shopii/components/Products/Collection/pop.css"
+    />
+    <!-- Sidebar and Navbar styles (inline or external as needed) -->
+    <style>
+      .sidebar-custom {
+        background: #f4f5f7;
+        border-radius: 16px 16px 0 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        min-width: 260px;
+        max-width: 260px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: 16px 0 0 0;
+        position: fixed;
+        padding-top: 60px;
+        top: 0;
+        left: 0;
+      }
+      .sidebar-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        flex: 1 1 auto;
+      }
+      .sidebar-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 4px 16px;
+        font-size: 0.88rem;
+        color: #222;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-bottom: 2px;
+        transition: background 0.2s;
+        min-height: 32px;
+      }
+      .sidebar-item.active {
+        background: #fff;
+        font-weight: 600;
+        color: #111;
+      }
+      .sidebar-item:hover:not(.active) {
+        background: #e9e9eb;
+      }
+      .sidebar-icon {
+        width: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.92em;
+      }
+      .sidebar-section {
+        font-size: 0.92em;
+        color: #888;
+        font-weight: 600;
+        margin: 18px 0 4px 20px;
+        letter-spacing: 0.01em;
+      }
+      .sidebar-subitem {
+        padding-left: 28px;
+        font-weight: 500;
+        font-size: 0.85em;
+        min-height: 28px;
+      }
+      .sidebar-settings {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 20px;
+        font-size: 1rem;
+        color: #222;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        margin-top: auto;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .sidebar-settings:hover {
+        background: #e9e9eb;
+      }
+      @media (max-width: 991.98px) {
+        .sidebar-custom {
+          display: none !important;
+        }
+      }
+    </style>
+    <style>
+      @media (max-width: 1000px) {
+        .navbar-center-bar {
+          display: none !important;
+        }
+      }
+      @media (max-width: 429.99px) {
+        .badge {
+          display: none;
+        }
+      }
+      @media (max-width: 650px) {
+        .navbar-center-bar {
+          min-width: 0 !important;
+          max-width: 100vw !important;
+          width: 100%;
+          padding-left: 0.5rem !important;
+          padding-right: 0.5rem !important;
+        }
+        .navbar-center-bar .text-white-50 {
+          font-size: 0.95em;
+        }
+        .navbar-center-bar .btn {
+          font-size: 0.95em;
+          padding: 0.25rem 0.75rem;
+        }
+        .navbar-center-bar .ms-auto {
+          margin-left: 0 !important;
+        }
+        .navbar-center-bar {
+          flex-wrap: wrap;
+        }
+        .navbar .text-username {
+          display: none !important;
+        }
+        .navbar .gap-3 {
+          gap: 0.5rem !important;
+        }
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="/Shopii/components/Products/Collection/Collection.css"
+    />
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-dark bg-black border-bottom fixed-top px-0"
+      style="height: 60px; z-index: 1040"
+    >
+      <div class="container-fluid px-3">
+        <div class="d-flex align-items-center">
+          <button
+            class="btn btn-outline-secondary d-lg-none me-2"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#mobileSidebar"
+            aria-controls="mobileSidebar"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <span class="d-flex align-items-center">
+            <span
+              class="rounded-2 d-flex align-items-center justify-content-center me-2"
+              style="width: 32px; height: 32px; background: #a259ff"
+            >
+              <i
+                class="bi bi-bag-fill text-white"
+                style="font-size: 1.3rem"
+              ></i>
+            </span>
+            <span
+              class="fw-bold text-white me-2"
+              style="font-size: 1.25rem; letter-spacing: -1px"
+              >shopify</span
+            >
+            <span
+              class="badge border border-primary text-primary bg-black"
+              style="font-size: 0.85em"
+              >Summer '25</span
+            >
+          </span>
+        </div>
+        <div class="flex-grow-1 d-flex justify-content-center">
+          <div
+            class="navbar-center-bar d-flex align-items-center bg-dark rounded-pill px-3 py-1 w-100"
+            style="min-width: 420px; max-width: 600px"
+          >
+            <i class="bi bi-exclamation-circle text-secondary me-2"></i>
+            <span class="text-white-50 fw-semibold me-3">Unsaved product</span>
+            <div class="ms-auto d-flex align-items-center gap-2 flex-shrink-0">
+              <button
+                class="btn btn-outline-light btn-sm fw-semibold me-2"
+                style="border-radius: 6px"
+              >
+                Discard
+              </button>
+              <button
+                class="btn btn-secondary btn-sm fw-semibold"
+                style="border-radius: 6px; opacity: 0.5; pointer-events: none"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center ms-3 gap-3">
+          <i
+            class="bi bi-emoji-sunglasses text-white"
+            style="font-size: 1.3rem"
+          ></i>
+          <i class="bi bi-bell text-white" style="font-size: 1.3rem"></i>
+          <span class="d-flex align-items-center">
+            <span
+              class="rounded-pill px-2 py-1 fw-bold text-white"
+              style="background: #a259ff; font-size: 1rem"
+              >San</span
+            >
+            <span class="text-white fw-semibold ms-2 text-username"
+              >SandboxTestAsim</span
+            >
+          </span>
+        </div>
+      </div>
+    </nav>
+    <aside class="sidebar-custom">
+      <ul class="sidebar-list">
+        <li>
+          <a
+            class="sidebar-item"
+            href="/Shopii/components/Home/HomeMainContent/HomeMainContent.html"
+            ><span class="sidebar-icon"><i class="bi bi-house-door"></i></span
+            ><span>Home</span></a
+          >
+        </li>
+        <li>
+          <a
+            class="sidebar-item"
+            href="/Shopii/components/Orders/OrderMainContent/OrderMainContent.html"
+            ><span class="sidebar-icon"><i class="bi bi-box"></i></span
+            ><span>Orders</span></a
+          >
+        </li>
+        <li>
+          <a class="sidebar-item" data-dropdown="products" href="#"
+            ><span class="sidebar-icon"><i class="bi bi-tag"></i></span
+            ><span>Products</span
+            ><span class="dropdown-caret"
+              ><i class="bi bi-chevron-down"></i></span
+          ></a>
+          <ul
+            class="sidebar-sublist"
+            data-dropdown-list="products"
+            style="display: none"
+          >
+            <li>
+              <a
+                class="sidebar-item sidebar-subitem"
+                href="/Shopii/components/Products/Collection/Collection.html"
+                ><span class="sidebar-icon"
+                  ><i class="bi bi-collection"></i></span
+                ><span>Collection</span></a
+              >
+            </li>
+            <li>
+              <a class="sidebar-item sidebar-subitem" href="#"
+                ><span class="sidebar-icon"><i class="bi bi-box-seam"></i></span
+                ><span>Inventory</span></a
+              >
+            </li>
+            <li>
+              <a class="sidebar-item sidebar-subitem" href="#"
+                ><span class="sidebar-icon"><i class="bi bi-receipt"></i></span
+                ><span>Purchase Orders</span></a
+              >
+            </li>
+            <li>
+              <a class="sidebar-item sidebar-subitem" href="#"
+                ><span class="sidebar-icon"
+                  ><i class="bi bi-arrow-left-right"></i></span
+                ><span>Transfers</span></a
+              >
+            </li>
+            <li>
+              <a class="sidebar-item sidebar-subitem" href="#"
+                ><span class="sidebar-icon"
+                  ><i class="bi bi-credit-card"></i></span
+                ><span>Gift Cards</span></a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            class="sidebar-item"
+            href="/Shopii/components/Customers/CustomersMainContent/CustomersMainContent.html"
+            ><span class="sidebar-icon"><i class="bi bi-person"></i></span
+            ><span>Customers</span></a
+          >
+        </li>
+        <li>
+          <a
+            class="sidebar-item"
+            href="/Shopii/components/Marketing/MarketingMainContent/MarketingMainContent.html"
+            ><span class="sidebar-icon"><i class="bi bi-broadcast"></i></span
+            ><span>Marketing</span></a
+          >
+        </li>
+        <li>
+          <a
+            class="sidebar-item"
+            href="/Shopii/components/Discounts/DiscountsMainContent/DiscountsMainContent.html"
+            ><span class="sidebar-icon"><i class="bi bi-gear"></i></span
+            ><span>Discounts</span></a
+          >
+        </li>
+        <li>
+          <a
+            class="sidebar-item"
+            href="/Shopii/components/Content/ContentMainContent/ContentMainContent.html"
+            ><span class="sidebar-icon"
+              ><i class="bi bi-file-earmark-text"></i></span
+            ><span>Content</span></a
+          >
+        </li>
+        <li>
+          <a
+            class="sidebar-item"
+            href="/Shopii/components/Markets/MarketsMainContent/MarketsMainContent.html"
+            ><span class="sidebar-icon"><i class="bi bi-globe"></i></span
+            ><span>Markets</span></a
+          >
+        </li>
+        <li>
+          <a
+            class="sidebar-item"
+            href="/Shopii/components/Analytics/AnalyticsMainContent/AnalyticsMainContent.html"
+            ><span class="sidebar-icon"><i class="bi bi-bar-chart"></i></span
+            ><span>Analytics</span></a
+          >
+        </li>
+        <li class="sidebar-section">Sales channels</li>
+        <li>
+          <a class="sidebar-item sidebar-subitem" href="#"
+            ><span class="sidebar-icon"><i class="bi bi-window"></i></span
+            ><span>Online Store</span></a
+          >
+        </li>
+        <li class="sidebar-section">Apps</li>
+        <li>
+          <a class="sidebar-item sidebar-subitem" href="#"
+            ><span class="sidebar-icon"><i class="bi bi-plus-circle"></i></span
+            ><span>Add</span></a
+          >
+        </li>
+      </ul>
+      <a class="sidebar-settings" href="#"
+        ><span class="sidebar-icon"><i class="bi bi-gear"></i></span
+        ><span>Settings</span></a
+      >
+    </aside>
+    <!-- Mobile Offcanvas Sidebar -->
+    <div
+      class="offcanvas offcanvas-start"
+      tabindex="-1"
+      id="mobileSidebar"
+      aria-labelledby="mobileSidebarLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="mobileSidebarLabel">Menu</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body p-0">
+        <ul class="sidebar-list">
+          <li>
+            <a
+              class="sidebar-item active"
+              href="/Shopii/components/Home/HomeMainContent/HomeMainContent.html"
+              ><span class="sidebar-icon"><i class="bi bi-house-door"></i></span
+              ><span>Home</span></a
+            >
+          </li>
+          <li>
+            <a
+              class="sidebar-item"
+              href="/Shopii/components/Orders/OrderMainContent/OrderMainContent.html"
+              ><span class="sidebar-icon"><i class="bi bi-box"></i></span
+              ><span>Orders</span></a
+            >
+          </li>
+          <li>
+            <a class="sidebar-item" data-dropdown="products" href="#"
+              ><span class="sidebar-icon"><i class="bi bi-tag"></i></span
+              ><span>Products</span
+              ><span class="dropdown-caret"
+                ><i class="bi bi-chevron-down"></i></span
+            ></a>
+            <ul
+              class="sidebar-sublist"
+              data-dropdown-list="products"
+              style="display: none"
+            >
+              <li>
+                <a
+                  class="sidebar-item sidebar-subitem"
+                  href="/Shopii/components/Products/Collection/Collection.html"
+                  ><span class="sidebar-icon"
+                    ><i class="bi bi-collection"></i></span
+                  ><span>Collection</span></a
+                >
+              </li>
+              <li>
+                <a class="sidebar-item sidebar-subitem" href="#"
+                  ><span class="sidebar-icon"
+                    ><i class="bi bi-box-seam"></i></span
+                  ><span>Inventory</span></a
+                >
+              </li>
+              <li>
+                <a class="sidebar-item sidebar-subitem" href="#"
+                  ><span class="sidebar-icon"
+                    ><i class="bi bi-receipt"></i></span
+                  ><span>Purchase Orders</span></a
+                >
+              </li>
+              <li>
+                <a class="sidebar-item sidebar-subitem" href="#"
+                  ><span class="sidebar-icon"
+                    ><i class="bi bi-arrow-left-right"></i></span
+                  ><span>Transfers</span></a
+                >
+              </li>
+              <li>
+                <a class="sidebar-item sidebar-subitem" href="#"
+                  ><span class="sidebar-icon"
+                    ><i class="bi bi-credit-card"></i></span
+                  ><span>Gift Cards</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              class="sidebar-item"
+              href="/Shopii/components/Customers/CustomersMainContent/CustomersMainContent.html"
+              ><span class="sidebar-icon"><i class="bi bi-person"></i></span
+              ><span>Customers</span></a
+            >
+          </li>
+          <li>
+            <a
+              class="sidebar-item"
+              href="/Shopii/components/Marketing/MarketingMainContent/MarketingMainContent.html"
+              ><span class="sidebar-icon"><i class="bi bi-broadcast"></i></span
+              ><span>Marketing</span></a
+            >
+          </li>
+          <li>
+            <a
+              class="sidebar-item"
+              href="/Shopii/components/Discounts/DiscountsMainContent/DiscountsMainContent.html"
+              ><span class="sidebar-icon"><i class="bi bi-gear"></i></span
+              ><span>Discounts</span></a
+            >
+          </li>
+          <li>
+            <a
+              class="sidebar-item"
+              href="/Shopii/components/Content/ContentMainContent/ContentMainContent.html"
+              ><span class="sidebar-icon"
+                ><i class="bi bi-file-earmark-text"></i></span
+              ><span>Content</span></a
+            >
+          </li>
+          <li>
+            <a
+              class="sidebar-item"
+              href="/Shopii/components/Markets/MarketsMainContent/MarketsMainContent.html"
+              ><span class="sidebar-icon"><i class="bi bi-globe"></i></span
+              ><span>Markets</span></a
+            >
+          </li>
+          <li>
+            <a
+              class="sidebar-item"
+              href="/Shopii/components/Analytics/AnalyticsMainContent/AnalyticsMainContent.html"
+              ><span class="sidebar-icon"><i class="bi bi-bar-chart"></i></span
+              ><span>Analytics</span></a
+            >
+          </li>
+          <li class="sidebar-section">Sales channels</li>
+          <li>
+            <a class="sidebar-item sidebar-subitem" href="#"
+              ><span class="sidebar-icon"><i class="bi bi-window"></i></span
+              ><span>Online Store</span></a
+            >
+          </li>
+          <li class="sidebar-section">Apps</li>
+          <li>
+            <a class="sidebar-item sidebar-subitem" href="#"
+              ><span class="sidebar-icon"
+                ><i class="bi bi-plus-circle"></i></span
+              ><span>Add</span></a
+            >
+          </li>
+        </ul>
+        <a class="sidebar-settings" href="#"
+          ><span class="sidebar-icon"><i class="bi bi-gear"></i></span
+          ><span>Settings</span></a
+        >
       </div>
     </div>
-    <table class="collection-table">
-      <thead>
-        <tr>
-          <th style="width: 40px"><input type="checkbox" /></th>
-          <th>Title</th>
-          <th>Products</th>
-          <th>Product conditions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td class="collection-title-cell">
-            <span class="collection-thumb"><i class="bi bi-image"></i></span>
-            Home page
-          </td>
-          <td>0</td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="collection-learn">
-      Learn more about <a href="#">collections</a>
+    <div id="main-content-container">
+      <div class="collection-main-content">
+        <div class="collection-header">
+          <h1><i class="bi bi-tag"></i> Collections</h1>
+          <button id="addCollectionBtn" class="btn btn-dark">
+            Add collection
+          </button>
+        </div>
+        <div class="collection-table-card">
+          <div class="collection-table-toolbar">
+            <button class="btn btn-light btn-sm active">All</button>
+            <button class="btn btn-light btn-sm">+</button>
+            <div class="collection-table-actions">
+              <button class="btn btn-light btn-sm">
+                <i class="bi bi-funnel"></i>
+              </button>
+              <button class="btn btn-light btn-sm">
+                <i class="bi bi-arrow-down-up"></i>
+              </button>
+            </div>
+          </div>
+          <table class="collection-table">
+            <thead>
+              <tr>
+                <th style="width: 40px"><input type="checkbox" /></th>
+                <th>Title</th>
+                <th>Products</th>
+                <th>Product conditions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td class="collection-title-cell">
+                  <span class="collection-thumb"
+                    ><i class="bi bi-image"></i
+                  ></span>
+                  Home page
+                </td>
+                <td>0</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="collection-learn">
+            Learn more about <a href="#">collections</a>
+          </div>
+        </div>
+      </div>
+      <!-- Popup for Add Collection -->
+      <div
+        id="collectionPopup"
+        class="collection-popup"
+        style="display: none"
+      ></div>
     </div>
-  </div>
-</div>
-<!-- Popup for Add Collection -->
-<div id="collectionPopup" class="collection-popup" style="display: none"></div>
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script type="module" src="js/sidebarNav.js"></script>
+    <script src="/Shopii/js/DropDown.js"></script>
+     
+  </body>
+</html>

@@ -7,7 +7,7 @@ document.addEventListener("click", function (e) {
     '.sidebar-sublist[data-dropdown-list="products"]'
   );
   const isSubOption = e.target.closest(
-    '.sidebar-sublist[data-dropdown-list="products"] .sidebar-item'
+    '.sidebar-sublist[data-dropdown-list="products"]'
   );
 
   if (productsBtn) {
