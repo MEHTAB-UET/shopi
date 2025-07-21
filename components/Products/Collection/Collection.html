@@ -231,6 +231,57 @@
           gap: 0.5rem !important;
         }
       }
+      .collection-popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+      }
+      .collection-popup-content {
+        background: #fff;
+        border-radius: 12px;
+        padding: 32px 24px 24px 24px;
+        min-width: 320px;
+        max-width: 90vw;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+        position: relative;
+      }
+      .collection-popup-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: #888;
+        cursor: pointer;
+        z-index: 2010;
+      }
+      .collection-popup-close:active,
+      .collection-popup-close:focus {
+        outline: none;
+        color: #222;
+      }
+      .sidebar-sublist {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s;
+      }
+      .sidebar-sublist.open {
+        max-height: 500px;
+        opacity: 1;
+        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+      }
     </style>
   </head>
   <body>
@@ -350,11 +401,7 @@
             ><span class="dropdown-caret"
               ><i class="bi bi-chevron-down"></i></span
           ></a>
-          <ul
-            class="sidebar-sublist"
-            data-dropdown-list="products"
-            style="display: none"
-          >
+          <ul class="sidebar-sublist" data-dropdown-list="products">
             <li>
               <a
                 class="sidebar-item sidebar-subitem"
@@ -527,11 +574,22 @@
         </div>
       </div>
       <!-- Popup for Add Collection -->
-      <div
-        id="collectionPopup"
-        class="collection-popup"
-        style="display: none"
-      ></div>
+      <div id="collectionPopup" class="collection-popup" style="display: none">
+        <div class="collection-popup-content">
+          <button
+            class="collection-popup-close"
+            type="button"
+            aria-label="Close"
+          >
+            &times;
+          </button>
+          <h2>Add New Collection</h2>
+          <p>
+            Popup content goes here. (You can add a form or any content you
+            want.)
+          </p>
+        </div>
+      </div>
     </div>
     <!--  -->
     <!--  -->
@@ -609,6 +667,18 @@
         const allDropdowns = document.querySelectorAll(
           '.sidebar-sublist[data-dropdown-list="products"]'
         );
+        // Find the sublist that is the next sibling of the clicked Products button
+        let targetDropdown = null;
+        if (productsBtn) {
+          let next = productsBtn.nextElementSibling;
+          if (
+            next &&
+            next.classList.contains("sidebar-sublist") &&
+            next.getAttribute("data-dropdown-list") === "products"
+          ) {
+            targetDropdown = next;
+          }
+        }
         const isSubOption = e.target.closest(
           '.sidebar-sublist[data-dropdown-list="products"]'
         );
@@ -616,9 +686,13 @@
         if (productsBtn) {
           // Toggle Products sublist
           allDropdowns.forEach((list) => {
-            list.style.display =
-              list.style.display === "block" ? "none" : "block";
+            if (list !== targetDropdown) {
+              list.classList.remove("open");
+            }
           });
+          if (targetDropdown) {
+            targetDropdown.classList.toggle("open");
+          }
           // Prevent closing immediately
           e.stopPropagation();
           return;
@@ -628,10 +702,34 @@
         } else {
           // Clicked elsewhere: close Products sublist
           allDropdowns.forEach((list) => {
-            list.style.display = "none";
+            list.classList.remove("open");
           });
         }
       });
+      // Popup for Add Collection
+      const addCollectionBtn = document.getElementById("addCollectionBtn");
+      const collectionPopup = document.getElementById("collectionPopup");
+      const collectionPopupClose = document.querySelector(
+        ".collection-popup-close"
+      );
+      if (addCollectionBtn && collectionPopup) {
+        addCollectionBtn.addEventListener("click", function () {
+          collectionPopup.style.display = "flex";
+        });
+      }
+      if (collectionPopupClose && collectionPopup) {
+        collectionPopupClose.addEventListener("click", function () {
+          collectionPopup.style.display = "none";
+        });
+      }
+      // Optional: close popup when clicking outside content
+      if (collectionPopup) {
+        collectionPopup.addEventListener("click", function (e) {
+          if (e.target === collectionPopup) {
+            collectionPopup.style.display = "none";
+          }
+        });
+      }
     </script>
     <!-----------------------Side bar ki js--------------------------->
 
