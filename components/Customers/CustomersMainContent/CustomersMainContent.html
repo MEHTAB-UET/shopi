@@ -477,11 +477,108 @@
     <!----------------------Main Content-------------------------------->
     <!-- Main content area for the Product Quote Builder page -->
 
-    <div id="main-content-container">
-      <div class="customers-main-content">
-        <h1>Customers Main Content</h1>
+    <div class="qb-container">
+      <h1>Question Builder</h1>
+      <form class="qb-form">
+        <label for="question-group">Choose Question Group</label>
+        <select id="question-group" name="question-group">
+          <option>Group A</option>
+          <option>Group B</option>
+          <option>Group C</option>
+        </select>
+
+        <label for="material-component">Choose Material Component</label>
+        <select id="material-component" name="material-component">
+          <option>Computer Motherboard</option>
+          <option>CPU</option>
+          <option>RAM</option>
+          <option>Hard Drive</option>
+        </select>
+
+        <label for="template">Choose Template</label>
+        <select id="template" name="template">
+          <option>Template 1</option>
+          <option>Template 2</option>
+          <option>Template 3</option>
+        </select>
+
+        <label for="parent-question">Choose Parent Question</label>
+        <select id="parent-question" name="parent-question">
+          <option>Example Question</option>
+          <option>Parent Question 2</option>
+          <option>Parent Question 3</option>
+        </select>
+
+        <label for="question-text">Question text</label>
+        <input type="text" id="question-text" name="question-text" />
+
+        <label for="option-type">Option Type</label>
+        <select id="option-type" name="option-type">
+          <option>Radio buttons</option>
+          <option>Checkboxes</option>
+          <option>Dropdown</option>
+          <option>Text</option>
+        </select>
+      </form>
+      <hr class="qb-section-divider" />
+      <div class="qb-options-section">
+        <h2>Options</h2>
+        <form class="qb-options-form">
+          <label for="option-text">Option Text</label>
+          <input type="text" id="option-text" name="option-text" />
+
+          <div class="qb-checkbox-row">
+            <input type="checkbox" id="is-required" name="is-required" />
+            <label for="is-required">IsRequired</label>
+          </div>
+
+          <label for="valid-from">Valid From</label>
+          <input type="datetime-local" id="valid-from" name="valid-from" />
+
+          <label for="valid-to">Valid To</label>
+          <input type="datetime-local" id="valid-to" name="valid-to" />
+
+          <label for="choose-tags">Choose Tags</label>
+          <div class="custom-multiselect" id="choose-tags-container">
+            <div class="selected-tags" id="selected-tags"></div>
+            <input
+              type="text"
+              id="choose-tags-input"
+              class="choose-tags-input inputWalaCompleteBox"
+              readonly
+            />
+            <div class="dropdown-arrow">
+              <svg width="20" height="20" viewBox="0 0 20 20">
+                <path
+                  d="M5 8l5 5 5-5"
+                  stroke="#888"
+                  stroke-width="2"
+                  fill="none"
+                />
+              </svg>
+            </div>
+            <div class="dropdown-options" id="dropdown-options">
+              <div class="dropdown-option" data-value="los-angeles">
+                Los Angeles
+              </div>
+              <div class="dropdown-option" data-value="san-antonio">
+                San Antonio
+              </div>
+              <div class="dropdown-option" data-value="new-york">New York</div>
+              <div class="dropdown-option" data-value="chicago">Chicago</div>
+              <div class="dropdown-option" data-value="houston">Houston</div>
+              <div class="dropdown-option" data-value="phoenix">Phoenix</div>
+              <div class="dropdown-option" data-value="philadelphia">
+                Philadelphia
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="qb-create-btn">Create</button>
+        </form>
       </div>
     </div>
+
     <!--  -->
     <!--  -->
     <!--  -->
@@ -583,6 +680,79 @@
       });
     </script>
     <!-----------------------Side bar ki js--------------------------->
+
+    <!--  -->
+    <!--  -->
+    <!--code only for question builder-->
+    <!-- MagicSuggest CSS/JS -->
+    <link rel="stylesheet" href="magicsuggest.css" />
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="magicsuggest.js"></script>
+    <script>
+      // Custom Multi-Select Dropdown Logic
+      (function () {
+        const container = document.getElementById("choose-tags-container");
+        const input = document.getElementById("choose-tags-input");
+        const options = document.getElementById("dropdown-options");
+        const selectedTags = document.getElementById("selected-tags");
+        let selected = [];
+
+        function updateTags() {
+          selectedTags.innerHTML = "";
+          selected.forEach((tag) => {
+            const tagEl = document.createElement("span");
+            tagEl.className = "tag-chip";
+            tagEl.textContent = tag.label;
+            const removeBtn = document.createElement("span");
+            removeBtn.className = "remove-tag";
+            removeBtn.textContent = "×";
+            removeBtn.onclick = function (e) {
+              e.stopPropagation();
+              selected = selected.filter((t) => t.value !== tag.value);
+              updateTags();
+              updateOptions();
+            };
+            tagEl.appendChild(removeBtn);
+            selectedTags.appendChild(tagEl);
+          });
+        }
+
+        function updateOptions() {
+          Array.from(options.children).forEach((opt) => {
+            const isSelected = selected.some(
+              (t) => t.value === opt.dataset.value
+            );
+            opt.style.display = isSelected ? "none" : "";
+          });
+        }
+
+        container.onclick = function () {
+          options.classList.toggle("show");
+        };
+
+        Array.from(options.children).forEach((opt) => {
+          opt.onclick = function (e) {
+            e.stopPropagation();
+            const value = opt.dataset.value;
+            const label = opt.textContent;
+            if (!selected.some((t) => t.value === value)) {
+              selected.push({ value, label });
+              updateTags();
+              updateOptions();
+            }
+            options.classList.remove("show");
+          };
+        });
+
+        document.addEventListener("click", function (e) {
+          if (!container.contains(e.target)) {
+            options.classList.remove("show");
+          }
+        });
+      })();
+    </script>
+    <!--  -->
+    <!--  -->
 
     <script src="content.js"></script>
   </body>
